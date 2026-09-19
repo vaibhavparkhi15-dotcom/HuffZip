@@ -94,7 +94,7 @@ function App(){
   };
 
   const download=(bytes:Uint8Array,name:string,mime="application/octet-stream")=>{
-    const blob=new Blob([bytes.buffer],{type:mime}), url=URL.createObjectURL(blob), a=document.createElement("a");
+    const blob=new Blob([new Uint8Array(bytes)],{type:mime}), url=URL.createObjectURL(blob), a=document.createElement("a");
     a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),500);
   };
 
